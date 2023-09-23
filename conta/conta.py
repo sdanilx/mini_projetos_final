@@ -1,4 +1,3 @@
-
 class Conta:
 
     def __init__(self, numero, saldo):
@@ -16,30 +15,38 @@ class Conta:
     def getLimite(self):
         return self.limite
 
-    def sacar(self, valor):
-        if valor <= self.saldo and valor > 0:
+    def sacar(self, valor: float):
+        if valor > self.saldo - self.limite:
+            self.limite = self.saldo - valor
+        if 0 < valor <= self.saldo:
             self.saldo -= valor
             print('Saque concluído')
+            self.extrato.append(- float(valor))
+            return True
         else:
-            return None
-        self.extrato.append(f'- {valor}')
+            return False
 
-    def depositar(self, valor):
+    def depositar(self, valor: float):
         if valor > 0:
             self.saldo += valor
-        self.extrato.append(f'+ {valor}')
+            self.extrato.append(float(valor))
+            if self.limite == 0:
+                self.limite += valor
+            if self.saldo >= 100:
+                self.limite = 100
+            return True
+        else:
+            return False
 
-    def transferir(self, origem, destino, valor):
-        self.origem = origem
-        self.destino = destino
-
-        if origem and destino:
-            if self.saldo >= valor > 0:
-                origem.sacar(valor)
+    def transferir(self, destino, valor):
+        if destino:
+            if 0 < valor <= self.saldo:
+                self.sacar(valor)
                 destino.depositar(valor)
                 print('Transação realizada')
-                self.extrato.append(f'- {valor}')
+                return True
             else:
-                return None
+                print('Saldo insuficiente')
+                return False
     def verExtrato(self):
         return self.extrato
