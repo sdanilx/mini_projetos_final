@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/conta" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/carro_ecologico" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cofre" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
