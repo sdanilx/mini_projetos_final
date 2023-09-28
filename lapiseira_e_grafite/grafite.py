@@ -9,16 +9,16 @@ class Grafite:
         self.tamanho = tamanho
 
     def desgastePorFolha(self):
-        return -1
+        return self.dureza
 
     def getDureza(self):
-        return None
+        return self.dureza
 
     def getCalibre(self):
-        return -1.0
+        return self.calibre
 
     def getTamanho(self):
-        return -1
+        return self.tamanho
 
     def setTamanho(self, tamanho:int):
-        pass
+        self.tamanho = tamanho

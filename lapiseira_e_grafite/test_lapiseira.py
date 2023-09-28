@@ -82,7 +82,7 @@ class TestLapiseira(unittest.TestCase):
 
     def testEscrevendoCom6B(self):
         lapiseira = Lapiseira(0.5)
-        grafite = Grafite(0.5, Grafite.Dureza.G_6B, 12)
+        grafite = Grafite(0.5, Dureza.G_6B, 12)
         lapiseira.inserir(grafite)
         self.assertTrue(lapiseira.escrever(2),
                         "Com esse grafite inserido, deve ser possivel escrever ate 2 paginas")

@@ -1,37 +1,62 @@
 from grafite import Grafite
-
+from dureza import Dureza
 
 class Lapiseira:
-
-    def __init__(self, calibre:float):
+    def __init__(self, calibre: float):
         self.calibre = calibre
-        self.grafite = 0
+        self.grafite_contador = 0
+        self.grafite_escrever = None
+        self.folhas_escritas = 0
+        self.gasto_do_grafite = 0
 
     def inserir(self, grafite: Grafite):
-        if self.grafite == 0 and grafite.calibre == self.calibre:
-            self.grafite += 1
+        if self.grafite_contador == 0 and grafite.calibre == self.calibre:
+            self.grafite_contador += 1
+            self.grafite_escrever = grafite
             return True
-        else:
-            return False
-
+        return False
 
     def remover(self):
-        if self.grafite == 1:
-            self.grafite -= 1
+        if self.grafite_contador == 1:
+            self.grafite_contador -= 1
+            self.grafite_escrever = None
+            self.folhas_escritas = 0
             return True
         return False
 
     def escrever(self, folhas: int):
-        self.folhas = folhas
-        if self.grafite == 1:
-            self.folhas -= self.grafite.dureza
+        if self.grafite_contador == 1:
+            self.paginas_por_grafite = self.grafite_escrever.tamanho / self.grafite_escrever.dureza
+            if self.paginas_por_grafite > folhas:
+                self.folhas_escritas += folhas
+                self.gasto_do_grafite += folhas
+                self.paginas_por_grafite -= folhas
+                self.grafite_escrever.tamanho -= self.grafite_escrever.dureza * folhas
+                return True
+            elif folhas > self.paginas_por_grafite:
+                diferenca = folhas - self.paginas_por_grafite
+                self.folhas_escritas += folhas - diferenca
+                self.grafite_contador = 0
+                self.grafite_escrever = None
+                self.paginas_por_grafite -= folhas
+                print("Aviso: O grafite acabou!")
+                return False
+            else:
+                self.grafite_contador = 0
+                self.grafite_escrever = None
+                self.folhas_escritas = folhas
+                self.paginas_por_grafite -= folhas
+                return True
         return False
 
     def getGrafite(self):
-        return None
+        if self.grafite_contador == 0:
+            return None
+        else:
+            return self.grafite_escrever
 
     def getCalibre(self):
         return self.calibre
 
     def getFolhasEscritas(self):
-        return -1
+        return self.folhas_escritas
