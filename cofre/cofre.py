@@ -24,7 +24,7 @@ class Cofre:
         if self.volume == self.volumeMaximo:
             return False
         if self.quebrou == False:
-            if item.volume <= self.volume_restante and item.volume <= self.volumeMaximo:
+            if item.volume <= self.volume_restante:
                 self.volume += item.volume
                 if self.itens_do_cofre:
                     self.itens_do_cofre += f", {item.descricao}"
@@ -40,7 +40,7 @@ class Cofre:
         if self.volume == self.volumeMaximo:
             return False
         if self.quebrou == False:
-            if 0 < moeda.value[1] <= self.volume_restante:
+            if moeda.value[1] <= self.volume_restante:
                 self.volume += moeda.value[1]
                 self.soma_de_moedas += moeda.value[0]
                 self.volume_restante = self.volumeMaximo - self.volume

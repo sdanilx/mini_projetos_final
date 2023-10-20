@@ -8,6 +8,9 @@
       <sourceFolder url="file://$MODULE_DIR$/cofre" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lapiseira_e_grafite" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/motoca_infantil" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/topic_de_luxo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pula_pula_no_parquinho" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tamagotchi_smartwatch" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
