@@ -42,31 +42,71 @@ class Tamagotchi:
         return self.diamantes
 
     def getEstaVivo(self):
-        return True
+        if self.energiaAtual > 0 and self.saciedadeAtual > 0 and self.limpezaAtual > 0 and self.idadeAtual != self.idadeMax:
+            self.vivo = True
+            return True
+        else:
+            self.vivo = False
+            return False
 
     def brincar(self):
-        if self.vivo == True:
+        if self.getEstaVivo() == True:
             print('Você está brincando!')
             self.energiaAtual -= 2
             self.saciedadeAtual -= 1
             self.limpezaAtual -= 3
             self.diamantes += 1
-            self.idadeAtual += 1
-            return True
+            if self.energiaAtual < 0:
+                self.energiaAtual = 0
+            if self.saciedadeAtual < 0:
+                self.saciedadeAtual = 0
+            if self.limpezaAtual < 0:
+                self.limpezaAtual = 0
+            if self.idadeAtual + 1 <= self.idadeMax:
+                self.idadeAtual += 1
+                return True
+            return False
         return False
 
     def comer(self):
-        if self.vivo:
+        if self.getEstaVivo() == True:
             print('Você está comendo!')
             self.energiaAtual -= 1
-            self.saciedadeAtual += 4
             self.limpezaAtual -= 2
-            self.idadeAtual += 1
-            return True
+            if self.energiaAtual < 0:
+                self.energiaAtual = 0
+            if self.limpezaAtual < 0:
+                self.limpezaAtual = 0
+            if self.idadeAtual + 1 <= self.idadeMax:
+                self.idadeAtual += 1
+            if self.saciedadeAtual + 4 <= self.saciedadeMax:
+                self.saciedadeAtual += 4
+            else:
+                self.saciedadeAtual = self.saciedadeMax
+                return True
         return False
 
     def dormir(self):
-        return True
+        if self.getEstaVivo() == True:
+            if self.energiaMax - self.energiaAtual >= 5:
+                self.idadeAtual += self.energiaMax - self.energiaAtual
+                if self.idadeAtual > self.idadeMax:
+                    self.idadeAtual = self.idadeMax
+                self.energiaAtual = self.energiaMax
+                self.saciedadeAtual -= 2
+                print('Você está dormindo!')
+                return True
+            return False
+        return False
 
     def banhar(self):
-        return True
+        if self.getEstaVivo() == True:
+            self.energiaAtual -= 3
+            self.saciedadeAtual -= 1
+            self.limpezaAtual = self.limpezaMax
+            if self.idadeAtual + 2 <= self.idadeMax:
+                self.idadeAtual += 2
+            else:
+                self.idadeAtual = self.idadeMax
+            return True
+        return False

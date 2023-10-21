@@ -9,7 +9,7 @@ class CriancaTest(unittest.TestCase):
         crianca = Crianca("Dora", 6)
         self.assertEqual(6, crianca.getIdade(),
                      "Ao inicializar uma crianca ela deve ter a mesma idade que foi passada na inicialização")
-        self.assertEqual("Dora", crianca.getName(),
+        self.assertEqual("Dora", crianca.getNome(),
                      "Ao inicializar uma crianca ela deve ter o mesmo nome que foi passada na inicialização")
 
 
