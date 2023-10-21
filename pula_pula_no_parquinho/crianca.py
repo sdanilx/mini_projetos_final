@@ -4,7 +4,7 @@ class Crianca:
         self.nome = nome
         self.idade = idade
 
-    def getName(self):
+    def getNome(self):
         return self.nome
 
     def getIdade(self):
