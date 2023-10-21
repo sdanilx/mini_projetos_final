@@ -12,9 +12,6 @@ class CriancaTest(unittest.TestCase):
         self.assertEqual("Dora", crianca.getName(),
                      "Ao inicializar uma crianca ela deve ter o mesmo nome que foi passada na inicialização")
 
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
-
 
 if __name__ == '__main__':
     unittest.main()

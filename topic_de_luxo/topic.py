@@ -9,11 +9,12 @@ class Topic:
         self.vagas_normais = self.capacidade - self.qtdPrioritarios
         self.psg_normal = [None] * (capacidade - qtdPrioritarios)
         self.psg_prioritario = [None] * qtdPrioritarios
+        self.lista_strings = []
 
-    def getAssentosPrioritarios(self):
+    def getNumeroAssentosPrioritarios(self):
         return self.qtdPrioritarios
 
-    def getAssentosNormais(self):
+    def getNumeroAssentosNormais(self):
         return self.vagas_normais
 
     def getPassageiroAssentoNormal(self, lugar):
@@ -63,6 +64,7 @@ class Topic:
                 index = self.psg_prioritario.index(None)
                 self.psg_prioritario[index] = passageiro
                 self.vagas -= 1
+                print(f"Não há cadeiras normais disponíveis. Passageiro {passageiro.nome} (Idade: {passageiro.idade}) inserido na cadeira preferencial {index}.")
                 return True
             return False
         return False
@@ -87,3 +89,19 @@ class Topic:
         else:
             print(f"Passageiro {nome} não encontrado na topic.")
             return False
+
+    def toString(self):
+        for passageiro in self.psg_prioritario:
+            if passageiro != None:
+                self.lista_strings.insert(0, '@' + passageiro.nome)
+            else:
+                self.lista_strings.append('@')
+
+        for passageiro in self.psg_normal:
+            if passageiro != None:
+                self.lista_strings.append('=' + passageiro.nome)
+            else:
+                self.lista_strings.append('=')
+
+        lista = ' '.join(self.lista_strings)
+        return '[' + lista + ' ]'

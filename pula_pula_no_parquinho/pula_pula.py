@@ -6,8 +6,8 @@ class PulaPula:
     def __init__(self, limiteMax: int):
         self.limiteMax = limiteMax
         self.caixa = 0
-        self.fila_de_espera = [None] * limiteMax
-        self.criancas_pulando = 0
+        self.fila_de_espera = []
+        self.criancas_pulando = []
 
     def getFilaDeEspera(self):
         return self.fila_de_espera
@@ -25,9 +25,18 @@ class PulaPula:
         return None
 
     def entrarNaFila(self, crianca: Crianca):
+        for criancas in self.criancas_pulando:
+            if criancas.nome != crianca.nome:
+                self.fila_de_espera.append(crianca)
+                return True
+            else:
+                return False
         return True
 
     def entrar(self):
+        crianca = self.fila_de_espera[0]
+        self.fila_de_espera.pop(0)
+        self.criancas_pulando.insert(0, crianca)
         return True
 
     def sair(self):

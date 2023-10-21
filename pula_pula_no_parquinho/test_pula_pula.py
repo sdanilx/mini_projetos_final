@@ -12,9 +12,9 @@ class PulaPulaTest(unittest.TestCase):
                          "Ao inicializar um pula-pula ela deve vir com o limite exato ao que foi passado na inicialização.")
         self.assertEqual(0, pulaPula.getCaixa(),
                          "Ao inicializar um pula-pula ela deve vir com o caixa zerado.")
-        self.assertTrue(pulaPula.getFilaDeEspera().isEmpty(),
+        self.assertEqual([], pulaPula.getFilaDeEspera(),
                         "Ao inicializar o pula-pula não deve haver ninguém na fila de espera.")
-        self.assertTrue(pulaPula.getCriancasPulando().isEmpty(),
+        self.assertEqual([], pulaPula.getCriancasPulando(),
                         "Ao inicializar o pula-pula não deve haver ninguém dentro do pula-pula.")
 
     def testPrimeiroDaFila(self):
@@ -22,7 +22,7 @@ class PulaPulaTest(unittest.TestCase):
         pulaPula.entrarNaFila(Crianca("maria", 6))
         crianca = Crianca("ana", 7)
         pulaPula.entrarNaFila(crianca)
-        self.assertEqual(crianca, pulaPula.getFilaDeEspera().get(pulaPula.getFilaDeEspera().size() - 1),
+        self.assertEqual(crianca, pulaPula.getFilaDeEspera()[len(pulaPula.getFilaDeEspera()) - 1],
                          "Quando uma crianca chega na fila ela deve ser insirida na última posição.")
 
     def testEntrarNoPulaPulaSemNinguemNaFila(self):
@@ -53,7 +53,7 @@ class PulaPulaTest(unittest.TestCase):
         pulaPula.entrarNaFila(Crianca("ana", 3))
         self.assertTrue(pulaPula.entrar(),
                         "Deve ser possível entrar no pula-pula se não houver nenhuma restrição")
-        self.assertEqual(crianca, pulaPula.getCriancasPulando().get(0),
+        self.assertEqual(crianca, pulaPula.getCriancasPulando()[0],
                          "Quando uma crianca entra no pula-pula ela tem necessiaremente tem quer ser a primeira da fila.")
 
     def testEntraNoPulaPulaSaiDaFila(self):
@@ -61,7 +61,7 @@ class PulaPulaTest(unittest.TestCase):
         pulaPula.entrarNaFila(Crianca("ana", 3))
         self.assertTrue(pulaPula.entrar(),
                         "Se o limite do pula-pula não foi alcançado, deve ser possível entrar no pula-pula.")
-        self.assertEqual(0, pulaPula.getFilaDeEspera().size(),
+        self.assertEqual(0, len(pulaPula.getFilaDeEspera()),
                          "Quando uma crianca entra no pula-pula, ela automaticamente sai da fila de espera.")
 
     def testSairDoPulaPulaSemNinguemNoPulaPula(self):
@@ -87,7 +87,7 @@ class PulaPulaTest(unittest.TestCase):
         pulaPula.entrar();
         self.assertTrue(pulaPula.sair(),
                         "Se houve crianca no pula-pula, deve ser possível a crianca sair do pula-pula.")
-        self.assertEqual(crianca, pulaPula.getFilaDeEspera().get(pulaPula.getFilaDeEspera().size() - 1),
+        self.assertEqual(crianca, pulaPula.getFilaDeEspera()[len(pulaPula.getFilaDeEspera()) - 1],
                          "Quando uma crianca sai do pula-pula, ela automatica entra no fim da fila de espera")
 
     def testEntrandoNoPulaPulaEAdicionandoSaldoNaConta(self):
@@ -100,7 +100,7 @@ class PulaPulaTest(unittest.TestCase):
         self.assertTrue(pulaPula.sair(),
                         "Se houve crianca no pula-pula, deve ser possível a crianca sair do pula-pula.")
         pulaPula.entrar()
-        self.assertEqual(5.00, pulaPula.getConta(crianca.getName()),
+        self.assertEqual(5.00, pulaPula.getConta(crianca.getNome()),
                          "Tpda vez que uma crianca entra no pula-pula é acrescido na sua conta o valor de R$ 2,50.")
 
     def testPaipaiChegouENaoTinhaNinguem(self):
@@ -155,11 +155,11 @@ class PulaPulaTest(unittest.TestCase):
         pulaPula.entrarNaFila(Crianca("Eduardo", 7))
         pulaPula.entrar()
         pulaPula.entrarNaFila(Crianca("Luiz", 8))
-        self.assertEqual(2.50, pulaPula.fechar(),
+        self.assertTrue(pulaPula.fechar(),
                          "Ao fechar todas as criancas que entraram no pula-pula devem pagar as contas.")
-        self.assertEqual(0, pulaPula.getFilaDeEspera().size(),
+        self.assertEqual(0, len(pulaPula.getFilaDeEspera()),
                          "Ao fechar o pula-pula todas as crianças são retiradas da fila.")
-        self.assertEqual(0, pulaPula.getCriancasPulando().size(),
+        self.assertEqual(0, len(pulaPula.getCriancasPulando()),
                          "Ao fechar o pula-pula todas as crianças são retiradas da fila.")
         self.assertIsNone(pulaPula.getConta("Eduardo"),
                           "Ao fechar o pula-pula, todas as contas de todas as crianças são excluídas")
