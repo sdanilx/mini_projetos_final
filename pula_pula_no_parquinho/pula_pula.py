@@ -88,8 +88,7 @@ class PulaPula:
     def fechar(self):
         if self.criancas_pulando:
             self.criancas_pulando.clear()
-            self.conta = None
+            self.conta += 2.50
         if self.fila_de_espera:
             self.fila_de_espera.clear()
-            self.conta = None
-        return -1
+        return True
