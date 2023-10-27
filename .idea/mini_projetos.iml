@@ -11,6 +11,19 @@
       <sourceFolder url="file://$MODULE_DIR$/Peso_2/pula_pula_no_parquinho" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Peso_2/tamagotchi_smartwatch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Peso_2/topic_de_luxo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/agenda" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/agenda/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/circulo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/circulo/aluno" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/circulo/aluno/base" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/circulo/cliente" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/circulo/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria/aluno" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria/aluno/base" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria/aluno/manager" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria/cliente" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_3/gestao_universitaria/test" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
