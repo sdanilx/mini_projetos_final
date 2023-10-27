@@ -3,14 +3,14 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/conta" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/carro_ecologico" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/cofre" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lapiseira_e_grafite" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/motoca_infantil" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/topic_de_luxo" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/pula_pula_no_parquinho" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tamagotchi_smartwatch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_1/carro_ecologico" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_1/cofre" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_1/conta" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_1/lapiseira_e_grafite" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_1/motoca_infantil" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_2/pula_pula_no_parquinho" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_2/tamagotchi_smartwatch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Peso_2/topic_de_luxo" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
