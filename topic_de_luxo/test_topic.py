@@ -81,7 +81,7 @@ class TestTopic(unittest.TestCase):
         topic = Topic(5, 3)
         self.assertEqual(5, topic.getVagas(), "Quantidade de vagas disponíveis está errada!")
         topic.subir(Passageiro("Bode", 5))
-        self.assertEquals(4, topic.getVagas(), "Quantidade de vagas disponíveis está errada!")
+        self.assertEqual(4, topic.getVagas(), "Quantidade de vagas disponíveis está errada!")
 
     def testMostrarTopicVazia(self):
         topic = Topic(10, 5)
