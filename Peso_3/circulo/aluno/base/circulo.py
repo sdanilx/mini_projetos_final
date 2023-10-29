@@ -11,4 +11,5 @@ class Circulo(CirculoBase):
 
 
     def setLimite(self, limite: int):
-        pass
+        self.limite = limite
+        return self.limite

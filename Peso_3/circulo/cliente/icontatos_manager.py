@@ -1,3 +1,4 @@
+
 from abc import ABC, abstractmethod
 
 from Peso_3.circulo.cliente.contato_base import ContatoBase

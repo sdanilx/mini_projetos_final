@@ -9,13 +9,14 @@ class CirculoBase(ABC):
 
     @abstractmethod
     def setLimite(self, limite: int):
-        pass
+        self.limite = limite
+        return self.limite
 
     def getId(self):
-        return None
+        return self.id
 
     def getLimite(self):
-        return 0
+        return self.limite
 
     @abstractmethod
     def getNumberOfContacts(self):
