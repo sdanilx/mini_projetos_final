@@ -1,21 +1,30 @@
 from fone import Fone
 
 
-class Contato:
+class Contato():
 
     def __init__(self, nome):
-        pass
+        self.nome = nome
+        self.fones = []
+
     def getName(self) -> str:
-        return ""
+        return self.nome
 
     def getQuantidadeFones(self) -> int:
-        return 0
+        return len(self.fones)
 
     def getFones(self) -> list:
-        return None
+        return self.fones
 
     def adicionarFone(self, fone: Fone) -> bool:
+        if fone.validarNumero(fone.numero):
+            if fone not in self.fones:
+                self.fones.append(fone)
+                return True
         return False
 
     def removerFone(self, index: int) -> bool:
-        return True
+        if len(self.fones) > index and index >= 0:
+            self.fones.pop(index)
+            return True
+        return False

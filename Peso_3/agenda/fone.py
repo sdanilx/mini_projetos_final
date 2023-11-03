@@ -1,17 +1,22 @@
 from identificador import Identificador
-
+import re
 
 class Fone:
 
     def __init__(self, identificador: Identificador, numero: str):
-        pass
+        self.identificador = identificador
+        self.numero = numero
 
     @staticmethod
     def validarNumero(numero) -> bool:
-        return True
+        padrao = r'^[0-9()-]+$'
+        if re.match(padrao, numero):
+            return True
+        else:
+            return False
 
     def getIdentificador(self) -> Identificador:
-        return Identificador.CASA
+        return self.identificador
 
     def getNumero(self) -> str:
-        return ""
+        return self.numero
