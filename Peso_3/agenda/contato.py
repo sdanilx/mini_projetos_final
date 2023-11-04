@@ -24,7 +24,7 @@ class Contato():
         return False
 
     def removerFone(self, index: int) -> bool:
-        if len(self.fones) > index and index >= 0:
+        if len(self.fones) > index >= 0:
             self.fones.pop(index)
             return True
         return False
