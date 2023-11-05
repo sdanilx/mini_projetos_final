@@ -7,3 +7,10 @@ class teste:
     if __name__ == '__main__':
         pass
 
+
+
+
+
+# erro test_agenda
+# line 154
+# está escrito 'assertEquals' em vez de 'assertEqual'
