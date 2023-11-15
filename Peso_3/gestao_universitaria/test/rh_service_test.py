@@ -10,6 +10,7 @@ from Peso_3.gestao_universitaria.cliente.tipo import Tipo
 class RHServiceCase(unittest.TestCase):
 
 
+
     @classmethod
     def setUp(cls):
         cls.rh = RHService()
@@ -60,7 +61,7 @@ class RHServiceCase(unittest.TestCase):
 
     def test_cadastrarSTAComNivelInvalido(self):
         self.assertFalse(self.rh.cadastrar(STA(self.cpfNulo, "claudio", 35)), "Nao podemos cadastrar sta com nivel invalido")
-        self.assertEquals(0, self.rh.getTotalFuncionarios(), "Funcionario cadastrado indevidamente")
+        self.assertEqual(0, self.rh.getTotalFuncionarios(), "Funcionario cadastrado indevidamente")
 
     def test_inserirFuncionarios(self):
         self.assertTrue(self.rh.cadastrar(self.profAlessio), "O terceirizado deveria ter sido adicionado")
@@ -135,7 +136,7 @@ class RHServiceCase(unittest.TestCase):
         self.rh.cadastrar(profX)
 
         self.assertEqual([self.staLacerda, self.staMiriam],
-                         self.rh.getFuncionariosPorCategorias(STA),
+                         self.rh.getFuncionariosPorCategorias(Tipo.STA),
                          "A lista deve conter os mesmo funcionario e deve estar ordenada pelo nome funcionario")
 
     def test_buscarTodosOsTerceirizados(self):

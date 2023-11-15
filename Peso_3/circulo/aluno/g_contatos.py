@@ -1,3 +1,4 @@
+
 from Peso_3.circulo.cliente.circulo_base import CirculoBase
 from Peso_3.circulo.cliente.contato_base import ContatoBase
 from Peso_3.circulo.cliente.icirculo_operations_manager import ICirculoOperationsManager

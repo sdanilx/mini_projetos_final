@@ -4,9 +4,17 @@ from Peso_3.circulo.cliente.circulo_base import CirculoBase
 
 
 class ICirculosManager(ABC):
-
+    def __init__(self):
+        self.circulos = []
     @abstractmethod
     def createCircle(self, id: str, limite: int) -> bool:
+        circulo = CirculoBase(id, limite)
+        if id not in [c.getId() for c in self.circulos]:
+            self.circulos.append(circulo)
+            return True
+        else:
+            return False
+
         """
         Adiciona um circulo
         Arguments:

@@ -1,4 +1,4 @@
-from Peso_3.gestao_universitaria.aluno.base.funcionario import Funcionario
+from funcionario import Funcionario
 
 
 class STA(Funcionario):

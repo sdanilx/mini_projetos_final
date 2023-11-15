@@ -1,7 +1,7 @@
 from fone import Fone
 
 
-class Contato():
+class Contato:
 
     def __init__(self, nome):
         self.nome = nome

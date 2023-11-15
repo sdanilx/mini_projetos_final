@@ -3,6 +3,7 @@ from identificador import Identificador
 
 
 class Agenda:
+
     def __init__(self):
         self.contatos = []
         self.fones = []
@@ -47,7 +48,7 @@ class Agenda:
                     return True
         return False
 
-    def getQuantidadeDeFones(self, identificador: Identificador) -> int:
+    def getQuantidadeDeFonesPorIdentificador(self, identificador: Identificador) -> int:
         if identificador is None:
             return sum(len(contato.getFones()) for contato in self.contatos)
         else:
@@ -55,7 +56,7 @@ class Agenda:
                 len([fone for fone in contato.getFones() if fone.identificador == identificador])
                 for contato in self.contatos)
 
-    def getQuantidadeDeFones(self):
+    def getQuantidadeTotalDeFones(self) -> int:
         return len(self.fones)
 
     def pesquisar(self, expressao:str) -> list:
