@@ -7,3 +7,11 @@ class STA(Funcionario):
         self.cpf = cpf
         self.nome = nome
         self.nivel = nivel
+        self.diarias = 0
+
+
+    def adicionar_diaria(self):
+        self.diarias += 1
+
+    def obter_diarias(self):
+        return self.diarias

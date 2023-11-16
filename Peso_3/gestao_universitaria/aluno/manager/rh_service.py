@@ -9,6 +9,21 @@ class RHService(IRHService):
 
     def __init__(self):
         self.funcionarios = []
+        self.gratificacao = 0
+        self.folha_de_pagamento = 0
+
+        # Salário dos funcionários
+        self.salario_prof_A = 3000
+        self.salario_prof_B = 5000
+        self.salario_prof_C = 7000
+        self.salario_prof_D = 9000
+        self.salario_prof_E = 11000
+
+        # Inicado em zero pois só é calculado ao informar o nível do funcionário
+        self.salario_sta = 0
+
+        self.salario_terc = 1000
+        self.salario_terc_insalubre = 1500
 
     def cadastrar(self, funcionario: Funcionario):
         if isinstance(funcionario, Professor):
@@ -63,39 +78,82 @@ class RHService(IRHService):
         return len(self.funcionarios)
 
     def solicitarDiaria(self, cpf: str):
-        return False
+        if self.obterFuncionario(cpf):
+            funcionario = self.obterFuncionario(cpf)
+            if isinstance(funcionario, Professor):
+                diarias = funcionario.obter_diarias()
+                if diarias < 3:
+                    if funcionario.classe == 'A':
+                        funcionario.adicionar_diaria()
+                        self.salario_prof_A += 100
+                        return True
+                    if funcionario.classe == 'B':
+                        funcionario.adicionar_diaria()
+                        self.salario_prof_B += 100
+                        return True
+                    if funcionario.classe == 'C':
+                        funcionario.adicionar_diaria()
+                        self.salario_prof_C += 100
+                        return True
+                    if funcionario.classe == 'D':
+                        funcionario.adicionar_diaria()
+                        self.salario_prof_D += 100
+                        return True
+                    if funcionario.classe == 'E':
+                        funcionario.adicionar_diaria()
+                        self.salario_prof_E += 100
+                        return True
+            if isinstance(funcionario, STA):
+                diarias = funcionario.obter_diarias()
+                if diarias < 1:
+                    funcionario.adicionar_diaria()
+                    self.salario_sta += 100
+            if isinstance(funcionario, Terceirizado):
+                return False
+
 
     def partilharLucros(self, valor: float):
-        return False
+        if self.funcionarios:
+            self.gratificacao = valor/len(self.funcionarios)
 
     def iniciarMes(self):
-        pass
+        self.diaria_prof = 0
+        self.diaria_sta = 0
+        self.gratificacao = 0
 
     def calcularSalarioDoFuncionario(self, cpf: str):
         funcionario = self.obterFuncionario(cpf)
+
+
         if isinstance(funcionario, Professor):
             if funcionario.classe == 'A':
-                return 3000.0
+                self.folha_de_pagamento += self.salario_prof_A
+                return self.salario_prof_A
             if funcionario.classe == 'B':
-                return 5000.0
+                self.folha_de_pagamento += self.salario_prof_B
+                return self.salario_prof_B
             if funcionario.classe == 'C':
-                return 7000.0
+                self.folha_de_pagamento += self.salario_prof_C
+                return self.salario_prof_C
             if funcionario.classe == 'D':
-                return 9000.0
+                self.folha_de_pagamento += self.salario_prof_D
+                return self.salario_prof_D
             if funcionario.classe == 'E':
-                return 11000.0
+                self.folha_de_pagamento += self.salario_prof_E
+                return self.salario_prof_E
 
         elif isinstance(funcionario, STA):
-            nivel = funcionario.nivel
-            salario_base = 1000 + 100 * nivel if 1 <= nivel <= 30 else 0
-            return salario_base
+            self.salario_sta += 1000 * (100 * funcionario.nivel)
+            return self.salario_sta
 
         elif isinstance(funcionario, Terceirizado):
-            salario_base = 1500 if funcionario.insalubre else 1000
-            return salario_base
-
-
+            if funcionario.insalubre:
+                self.folha_de_pagamento += self.salario_terc_insalubre
+                return self.salario_terc_insalubre
+            else:
+                self.folha_de_pagamento += self.salario_terc
+                return self.salario_terc
 
 
     def calcularFolhaDePagamento(self):
-        return 0
+        return self.folha_de_pagamento

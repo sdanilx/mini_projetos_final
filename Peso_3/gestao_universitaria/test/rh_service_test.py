@@ -250,17 +250,17 @@ class RHServiceCase(unittest.TestCase):
         self.assertEqual(18400.0, self.rh.calcularFolhaDePagamento(), "Soma de salarios com diaria incorreta")
 
     def test_participacaoNosLucros(self):
-        self.assertEquals(0.0, self.rh.calcularFolhaDePagamento())
+        self.assertEqual(0.0, self.rh.calcularFolhaDePagamento())
 
         self.assertTrue(self.rh.cadastrar(self.profJonas))
         self.assertTrue(self.rh.cadastrar(self.staMiriam))
         self.assertTrue(self.rh.cadastrar(self.tercCarla))
 
-        self.assertEquals(10000.0, self.rh.calcularFolhaDePagamento())
+        self.assertEqual(10000.0, self.rh.calcularFolhaDePagamento())
 
         self.assertTrue(self.rh.partilharLucros(6.00))
 
-        self.assertEquals(2002.0, self.rh.calcularSalarioDoFuncionario(self.cpfMiriam),
+        self.assertEqual(2002.0, self.rh.calcularSalarioDoFuncionario(self.cpfMiriam),
                           "Salarios com participacao nos lucros incorreto")
 
     def test_calcularFolhaComPL(self):
