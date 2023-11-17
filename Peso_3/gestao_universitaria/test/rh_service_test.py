@@ -10,7 +10,6 @@ from Peso_3.gestao_universitaria.cliente.tipo import Tipo
 class RHServiceCase(unittest.TestCase):
 
 
-
     @classmethod
     def setUp(cls):
         cls.rh = RHService()

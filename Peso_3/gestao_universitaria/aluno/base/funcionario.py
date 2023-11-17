@@ -11,5 +11,5 @@ class Funcionario:
     def getCpf(self) -> str:
         return self.cpf
 
-    def getSalario(self, funcionario) -> float:
+    def getSalario(self) -> float:
         return 0.0
