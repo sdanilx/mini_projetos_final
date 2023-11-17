@@ -118,7 +118,6 @@ class RHService(IRHService):
         if isinstance(funcionario, Professor):
             if funcionario.obter_diarias() > 0:
                 salario = self.salarios[funcionario.classe] + (funcionario.obter_diarias() * 100) + self.gratificacao
-
                 return salario
             else:
                 return self.salarios[funcionario.classe] + self.gratificacao
