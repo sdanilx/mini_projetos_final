@@ -9,8 +9,7 @@ class CirculoBase(ABC):
 
     @abstractmethod
     def setLimite(self, limite: int):
-        self.limite = limite
-        return self.limite
+        pass
 
     def getId(self):
         return self.id

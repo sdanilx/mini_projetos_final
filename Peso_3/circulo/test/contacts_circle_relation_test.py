@@ -112,12 +112,12 @@ class ContactsCircleRelationsTest(unittest.TestCase):
 
         self.assertTrue(self.gcont.tie(self.JAMES, self.FAMILIA), "Contato deve ser adicionado ao circulo")
         self.assertTrue(self.gcont.tie(self.JAMES, self.AMIGOS), "Contato deve ser adicionado ao circulo")
-        self.assertEquals([self.amigos, self.familia], self.gcont.getCircles(self.JAMES),
+        self.assertEqual([self.amigos, self.familia], self.gcont.getCircles(self.JAMES),
                           "Lista de circulos do contato esta errada")
 
         self.assertTrue(self.gcont.untie(self.JAMES, self.AMIGOS), "Contato deve ser removido ao circulo")
 
-        self.assertEquals([self.familia], self.gcont.getCircles(self.JAMES), "Remocao de contato errada")
+        self.assertEqual([self.familia], self.gcont.getCircles(self.JAMES), "Remocao de contato errada")
 
     def test_removendoContatoInexistenteDoCirculo(self):
         self.assertTrue(self.gcont.createCircle(self.FAMILIA, 3), "O circulo deve ser adicionado")

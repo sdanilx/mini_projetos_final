@@ -9,17 +9,15 @@ class ContatoBase(ABC):
 
     @abstractmethod
     def getId(self):
-        return self.id
+        pass
 
     @abstractmethod
     def setId(self, id:str):
-        self.id = id
-        return self.id
+        pass
 
     def getEmail(self):
         return self.email
 
     @abstractmethod
     def setEmail(self, email:str):
-        self.email = email
-        return self.email
+        pass

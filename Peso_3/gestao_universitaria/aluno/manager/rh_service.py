@@ -157,7 +157,5 @@ class RHService(IRHService):
                 salario = self.calcularSalarioDoFuncionario(terc.cpf)
                 self.folha_de_pagamento += salario
 
-            self.folha_de_pagamento
-
             return self.folha_de_pagamento
         return 0

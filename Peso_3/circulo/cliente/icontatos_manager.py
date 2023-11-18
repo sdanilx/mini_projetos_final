@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-from Peso_3.circulo.cliente.contato_base import ContatoBase
+from Peso_3.circulo.aluno.base.contato import Contato
 
 
 class IContatosManager(ABC):
@@ -28,7 +28,7 @@ class IContatosManager(ABC):
         pass
 
     @abstractmethod
-    def updateContact(self, contato: ContatoBase) -> bool:
+    def updateContact(self, contato: Contato) -> bool:
         """
         Atualiza o email do contato idenficado pelo id
         Arguments:
@@ -51,7 +51,7 @@ class IContatosManager(ABC):
         pass
 
     @abstractmethod
-    def getContact(self, id: str) -> ContatoBase:
+    def getContact(self, id: str) -> Contato:
         """
         Retorna um contato
         Arguments:
