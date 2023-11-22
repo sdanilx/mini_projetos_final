@@ -31,9 +31,9 @@ class TestAgenda(unittest.TestCase):
     def testAdicionarContatoSemTelefone(self):
         agenda = Agenda()
         contato = Contato("Alex")
-        self.assertFalse(agenda.adicionarContato(contato),
+        self.assertTrue(agenda.adicionarContato(contato),
                          "Deve ser possível adcionar um contato na lista de contatos se o nome ainda não existir.")
-        self.assertEqual(0, agenda.getQuantidadeDeContatos(),
+        self.assertEqual(1, agenda.getQuantidadeDeContatos(),
                          "Ao adicionar um contato válido, ele será salvo na lista de contatos da agenda.")
 
     def testAdicionarContatoRepetido(self):

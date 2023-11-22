@@ -31,15 +31,15 @@ class GContatos(IContatosManager, ICirculosManager, ICirculoOperationsManager):
         return False
 
     def removeContact(self, id: str) -> bool:
-        for contato in self.contatos_favoritos:
-            if contato.getId() == id:
-                self.contatos_favoritos.remove(contato)
-                self.contatos.remove(contato)
-                return True
-
         for contato in self.contatos:
-            if contato.id == id:
+            if contato.getId() == id:
                 self.contatos.remove(contato)
+                for circulo in self.circulos:
+                    for contato in circulo.contatos:
+                        if contato.getId() == id:
+                            circulo.contatos.remove(contato)
+                if contato in self.contatos_favoritos:
+                    self.contatos_favoritos.remove(contato)
                 return True
         return False
 
@@ -118,20 +118,20 @@ class GContatos(IContatosManager, ICirculosManager, ICirculoOperationsManager):
             circulo = self.getCircle(idCirculo)
             if circulo is None:
                 raise CirculoNotFoundException(idCirculo)
-        except CirculoNotFoundException as errorCirculoNotFound:
-            print(errorCirculoNotFound)
-            return False
+
+        except CirculoNotFoundException as errorNotFound:
+            raise errorNotFound
 
         try:
             contato = self.getContact(idContato)
             if contato is None:
                 raise ContatoNotFoundException(idContato)
+
         except ContatoNotFoundException as errorCNF:
-            print(errorCNF)
-            return False
+            raise errorCNF
 
         if contato in circulo.contatos:
-            return True
+            return False
 
         if len(circulo.contatos) >= circulo.limite:
             return False
@@ -145,16 +145,15 @@ class GContatos(IContatosManager, ICirculosManager, ICirculoOperationsManager):
             if circulo is None:
                 raise CirculoNotFoundException(idCirculo)
         except CirculoNotFoundException as errorCirculoNotFound:
-            print(errorCirculoNotFound)
-            return False
+            raise errorCirculoNotFound
 
         try:
             contato = self.getContact(idContato)
             if contato is None:
                 raise ContatoNotFoundException(idContato)
+
         except ContatoNotFoundException as errorCNF:
-            print(errorCNF)
-            return False
+            raise errorCNF
 
         if circulo.contatos is None or contato not in circulo.contatos:
             return False
@@ -164,44 +163,46 @@ class GContatos(IContatosManager, ICirculosManager, ICirculoOperationsManager):
 
     def getContacts(self, id: str) -> list:
         try:
-            self.getCircle(id)
             circulo = self.getCircle(id)
+            contatos = circulo.contatos
+            if contatos is None:
+                raise ContatoNotFoundException(contatos)
+            contatos_ordenados = sorted(contatos, key=lambda contato: contato.id)
+            return contatos_ordenados
 
         except CirculoNotFoundException(id) as errorCirculoNotFound:
             raise errorCirculoNotFound
 
-        contatos = circulo.contatos
-        contatos_ordenados = sorted(contatos, key=lambda contato: contato.id)
 
-        return contatos_ordenados
 
     def getCircles(self, id: str) -> list:
         try:
             self.getContact(id)
             contato = self.getContact(id)
+            if contato is None:
+                raise ContatoNotFoundException(id)
+            circulos_com_contato = [circulo for circulo in self.circulos if contato in circulo.contatos]
+            circulos_ordenados = sorted(circulos_com_contato, key=lambda circulo: circulo.id)
+
+            return circulos_ordenados
 
         except ContatoNotFoundException(id) as errorCNF:
             raise errorCNF
 
-        circulos_com_contato = [circulo for circulo in self.circulos if contato in circulo.contatos]
-        circulos_ordenados = sorted(circulos_com_contato, key=lambda circulo: circulo.id)
 
-        return circulos_ordenados
 
     def getCommomCircle(self, idContato1: str, idContato2: str) -> list:
 
-
         try:
-            contato1 = self.getContact(idContato1)
-            contato2 = self.getContact(idContato2)
+            circulos_em_comum = []
+            for circulo in self.getCircles(idContato1):
+                for circulo2 in self.getCircles(idContato2):
+                    if circulo == circulo2:
+                        circulos_em_comum.append(circulo)
+
+            circulos_ordenados = sorted(circulos_em_comum, key=lambda circulo: circulo.id)
 
         except ContatoNotFoundException as errorCNF:
             raise errorCNF
-
-        circulos_contato1 = set(circulo for circulo in self.circulos if contato1 in circulo.contatos)
-        circulos_contato2 = set(circulo for circulo in self.circulos if contato2 in circulo.contatos)
-
-        circulos_em_comum = list(circulos_contato1.intersection(circulos_contato2))
-        circulos_ordenados = sorted(circulos_em_comum, key=lambda circulo: circulo.id)
 
         return circulos_ordenados

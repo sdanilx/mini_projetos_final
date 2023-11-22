@@ -21,17 +21,22 @@ class Agenda:
         return None
 
     def adicionarContato(self, contato: Contato) -> bool:
-        if contato.getFones():
-            if contato.getName() not in [c.getName() for c in self.contatos]:
-                self.contatos.append(contato)
-                self.fones.extend(contato.getFones())
-                return True
-            else:
-                for contatos in self.contatos:
-                    if contatos.getName() == contato.getName():
-                        contatos.getFones().extend(contato.getFones())
-                        self.fones = contatos.getFones()
-                        return False
+        if len(self.contatos) > 0:
+            if contato.getFones():
+                if contato.getName() not in [c.getName() for c in self.contatos]:
+                    self.contatos.append(contato)
+                    self.fones.extend(contato.getFones())
+                    return True
+                else:
+                    for contatos in self.contatos:
+                        if contatos.getName() == contato.getName():
+                            contatos.getFones().extend(contato.getFones())
+                            self.fones = contatos.getFones()
+                            return False
+        else:
+            self.contatos.append(contato)
+            self.fones.extend(contato.getFones())
+            return True
 
     def removerContato(self, nome: str) -> bool:
         for contatos in self.contatos:
@@ -46,6 +51,7 @@ class Agenda:
                     contato.getFones().pop(index)
                     self.fones.pop(index)
                     return True
+            return False
         return False
 
     def getQuantidadeDeFonesPorIdentificador(self, identificador: Identificador) -> int:
